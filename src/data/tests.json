@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Тест по математике",
+    "description": "Контрольная по математике за 3 класс по сложению",
+    "timeLimit": 60,
+    "questions": [
+      {
+        "id": 1,
+        "question": "Сколько будет 2 + 2?",
+        "options": ["3", "4", "5"],
+        "correctAnswerIndex": 1
+      },
+      {
+        "id": 2,
+        "question": "Чему равен квадрат числа 3?",
+        "options": ["6", "8", "9"],
+        "correctAnswerIndex": 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "История России",
+    "description": "Контрольная работа по истории России за 5 класс",
+    "timeLimit": 90,
+    "questions": [
+      {
+        "id": 1,
+        "question": "В каком году произошло Крещение Руси?",
+        "options": ["988", "1012", "862"],
+        "correctAnswerIndex": 0
+      },
+      {
+        "id": 2,
+        "question": "Кто был первым князем Киевской Руси?",
+        "options": ["Игорь", "Олег", "Рюрик"],
+        "correctAnswerIndex": 2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Английский язык",
+    "description": "Тест по английскому языку на знание времён",
+    "timeLimit": 75,
+    "questions": [
+      {
+        "id": 1,
+        "question": "Выберите правильное время: 'I have been working here since 2010.'",
+        "options": ["Present Simple", "Present Perfect Continuous", "Past Continuous"],
+        "correctAnswerIndex": 1
+      },
+      {
+        "id": 2,
+        "question": "Выберите правильное время: 'She will go to London next week.'",
+        "options": ["Future Simple", "Future Continuous", "Present Simple"],
+        "correctAnswerIndex": 0
+      }
+    ]
+  }
+]
