@@ -3,7 +3,6 @@ import tests from '../data/tests.json';
 import { loadResultByTestId } from '../utils/storage';
 import { RenderResultViewer } from './ResultViewer';
 
-
 export function renderTestList(
   container: HTMLElement,
   onSelectTest: (test: Test) => void,
@@ -28,23 +27,27 @@ export function renderTestList(
       });
     } else {
       container.innerHTML = `
-        <div class="test-info">
-          <div class="test-info__line-container">
+        <section class="test-info">
+          <header class="test-info__header">
             <h2 class="test-info__title">Описание</h2>
-          </div>
+          </header>
+
           <div class="test-info__container">
-          <div class="test-info__description">
-            <p>${test.description}</p>
+            <p class="test-info__description">
+              ${test.description}
+            </p>
+
+            <dl class="test-info__time">
+              <dt>Время на выполнение:</dt>
+              <dd>${test.timeLimit} секунд</dd>
+            </dl>
+
+            <div class="test-info__buttons">
+              <button type="button" class="test-info__button test-info__button--start">Начать</button>
+              <button type="button" class="test-info__button test-info__button--cancel">Отмена</button>
+            </div>
           </div>
-          <div class="test-info__time">
-            <p><strong>Время на выполнение:</strong> ${test.timeLimit} секунд</p>
-          </div>
-          <div class="test-info__buttons">
-            <button class="test-info__button test-info__button--start">Начать</button>
-            <button class="test-info__button test-info__button--cancel">Отмена</button>
-          </div>
-          </div>
-        </div>
+        </section>
       `;
 
       const startBtn = container.querySelector('.test-info__button--start') as HTMLElement;

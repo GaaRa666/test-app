@@ -1,7 +1,6 @@
 import { Result, Test } from '../models/Test';
 import { deleteResult } from '../utils/storage';
 
-
 export function renderResultViewer(
   container: HTMLElement,
   result: Result,
@@ -9,7 +8,6 @@ export function renderResultViewer(
   onRestart: () => void,
   timeSpentInSeconds: number
 ): void {
-
   const correctCount = result.correctCount;
   const totalQuestions = test.questions.length;
 
@@ -21,47 +19,62 @@ export function renderResultViewer(
         : 'Нет ответа';
 
       return `
-        <div class="result-question">
-          <div class="result-question__title">${index + 1}. ${q.question}</div>
-          <div class="result-question__correct">Правильный ответ: <strong>${q.options[q.correctAnswerIndex]}</strong></div>
-          <div class="result-question__user">Вы ответили: <strong>${userAnswerText}</strong></div>
-        </div>
+        <article class="result-question">
+        <h3 class="result-question__title">${index + 1}. ${q.question}</h3>
+
+        <dl class="result-question__details">
+          <div class="result-question__correct">
+            <dt>Правильный ответ:</dt>
+            <dd><strong>${q.options[q.correctAnswerIndex]}</strong></dd>
+          </div>
+
+          <div class="result-question__user">
+            <dt>Ваш ответ:</dt>
+            <dd><strong>${userAnswerText}</strong></dd>
+          </div>
+        </dl>
+      </article>
       `;
     }).join('');
   };
 
   container.innerHTML = `
-    <div class="test-container">
-      
-      <!-- HEADER -->
-      <header class="test-header">
-        <button class="test-header__exit">Выход</button>
-        <div class="test-header__title">${test.title}</div>
-        <div class="test-header__controls">
-          <button class="test-header__reset">Сбросить все ответы</button>
-          <div class="test-header__answers">${result.answers.length}/${totalQuestions}</div>
-          <div class="test-header__timer">${formatTime(timeSpentInSeconds)}</div>
-        </div>
-      </header>
+    <main class="test-container">
+    <header class="test-header">
+      <button class="test-header__exit" aria-label="Выйти из теста">Выход</button>
 
-      <!-- BODY -->
-      <div class="test-body">
-        <div class="test-finish">
-          <h2 class="test-finish__title">Тест завершён</h2>
-          <p class="test-finish__subtitle">Вы ответили правильно на ${correctCount} из ${totalQuestions}</p>
-        </div>
+      <h2 class="test-header__title">${test.title}</h2>
 
-        <div class="result-questions">
-          ${renderQuestions()}
+      <nav class="test-header__controls" aria-label="Панель управления тестом">
+        <button type="button" class="test-header__reset">Сбросить все ответы</button>
+        
+        <div class="test-header__answers" aria-label="Количество ответов">
+          ${result.answers.length}/${totalQuestions}
         </div>
+        
+        <time class="test-header__timer" datetime="${formatTime(timeSpentInSeconds)}" aria-label="Время прохождения теста">
+          ${formatTime(timeSpentInSeconds)}
+        </time>
+      </nav>
+    </header>
+
+    <section class="test-body">
+      <div class="test-finish">
+        <h3 class="test-finish__title">Тест завершён</h3>
+        <p class="test-finish__subtitle">Вы ответили правильно на ${correctCount} из ${totalQuestions}</p>
       </div>
 
-      <!-- FOOTER -->
-      <footer class="test-footer">
-        <button class="test-footer__restart">Пройти ещё раз</button>
-      </footer>
+      <section class="result-questions">
+        ${renderQuestions()}
+      </section>
+    </section>
 
-    </div>
+    <footer class="test-footer">
+      <button type="button" class="test-footer__restart">Пройти ещё раз</button>
+    </footer>
+
+  </main>
+
   `;
 
 

@@ -8,7 +8,7 @@ export interface Question {
   export interface Test {
     id: number;
     title: string;
-    timeLimit: number; // Время на тест в секундах
+    timeLimit: number;
     questions: Question[];
   }
   

@@ -2,7 +2,8 @@ import "./assets/scss/styles.scss";
 import { renderTestList } from "./components/TestList";
 import { renderTestRunner } from "./components/TestRunner";
 import { RenderResultViewer } from "./components/ResultViewer";
-import tests from "./data/tests.json";
+import { Test } from './models/Test';
+import { Result } from './models/Result';
 
 const app = document.getElementById("app") as HTMLElement;
 
@@ -64,17 +65,23 @@ function showTestList(selectedTestId: number | null = null): void {
   );
 }
 
-function runTest(test: any): void {
-  renderTestRunner(document.getElementById("mainContent")!, test, (result) => {
-    RenderResultViewer(
-      document.getElementById("mainContent")!,
-      result,
-      test,
-      (selectedTestId: number | null) => {
-        showTestList(selectedTestId);
-      }
-    );
-  });
+function runTest(test: Test): void {
+  renderTestRunner(
+    document.getElementById("mainContent")!,
+    test,
+    (result: Result, remainingTime: number) => {
+      const timeSpentInSeconds = test.timeLimit - remainingTime;
+
+      RenderResultViewer(
+        document.getElementById("mainContent")!,
+        result,
+        test,
+        (selectedTestId: number | null) => {
+          showTestList(selectedTestId);
+        }
+      );
+    }
+  );
 }
 
 showTestList();

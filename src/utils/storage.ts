@@ -21,6 +21,6 @@ export function loadResultByTestId(testId: number): Result | null {
 
 export function deleteResult(testId: number): void {
   const results = JSON.parse(localStorage.getItem('test_results') || '[]');
-  const updatedResults = results.filter((r: any) => r.testId !== testId);
+  const updatedResults: Result[] = results.filter((r: Result) => r.testId !== testId);
   localStorage.setItem('test_results', JSON.stringify(updatedResults));
 }
