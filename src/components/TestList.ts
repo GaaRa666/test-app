@@ -87,8 +87,8 @@ function updateSidebarTestMenu(
           class="sidebar__test-btn ${isActive ? 'sidebar__test-btn--active' : ''}"
           data-id="${test.id}"
         >
+          <span class="sidebar__test-status ${isActive ? 'sidebar__test-status--active' : ''}"></span>
           ${test.title}
-          ${isFinished ? '<span class="sidebar__test-status">✔</span>' : ''}
         </button>
       </li>
     `;
