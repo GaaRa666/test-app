@@ -71,6 +71,8 @@ function updateSidebarTestMenu(
   selectedTestId: number | null
 ): void {
   const menuList = document.getElementById('testMenuList') as HTMLElement;
+  const sidebar = document.getElementById('sidebar');
+  const layout = document.querySelector('.layout');
 
   if (!menuList) return;
 
@@ -96,9 +98,15 @@ function updateSidebarTestMenu(
     button.addEventListener('click', () => {
       const id = parseInt((button as HTMLElement).dataset.id || '', 10);
       const selectedTest = tests.find(t => t.id === id);
+
       if (selectedTest) {
         renderTestList(document.getElementById('mainContent')!, onSelectTest, id);
+
+        sidebar?.classList.add('sidebar--collapsed');
+
+        layout?.classList.remove('sidebar-open');
       }
     });
   });
 }
+

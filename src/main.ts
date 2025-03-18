@@ -51,10 +51,12 @@ const toggleClose = document.getElementById("sidebarToggleClose") as HTMLElement
 
 toggleOpen.addEventListener("click", () => {
   sidebar.classList.remove("sidebar--collapsed");
+  document.querySelector('.layout')?.classList.add('sidebar-open');
 });
 
 toggleClose.addEventListener("click", () => {
   sidebar.classList.add("sidebar--collapsed");
+  document.querySelector('.layout')?.classList.remove('sidebar-open');
 });
 
 function showTestList(selectedTestId: number | null = null): void {
